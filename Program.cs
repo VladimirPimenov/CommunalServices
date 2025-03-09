@@ -13,7 +13,7 @@ namespace CommunalServices
 			builder.Services.AddControllers();
 			builder.Services.AddEndpointsApiExplorer();
 			builder.Services.AddSwaggerGen();
-
+			builder.Services.AddMvc();
 			builder.Services.AddDbContext<ApplicationDbContext>(options =>
 			options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
@@ -26,13 +26,13 @@ namespace CommunalServices
 			}
 
 			app.UseHttpsRedirection();
-
 			app.UseAuthorization();
 
+			app.MapControllerRoute(
+				name: "default",
+				pattern: "{controller=Home}/{action=Index}");
 
-			app.MapControllers();
-
-			app.Run();
+            app.Run();
 		}
 	}
 }
