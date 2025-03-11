@@ -34,7 +34,7 @@ namespace CommunalServices.Controllers
 		{
 			var abonent = dbContext.Abonent.FirstOrDefault(abonent => abonent.Login == login);
 
-			if(abonent == null)
+            if (abonent == null)
 			{
 				return NotFound();
 			}
@@ -43,14 +43,6 @@ namespace CommunalServices.Controllers
 				return Ok(abonent);
 			}
 		}
-
-		//[HttpGet]
-		//public IActionResult GetAllAbonents()
-		//{
-		//	var abonents = context.Abonents.ToList();
-
-		//	return Ok(abonents);
-		//}
 
 		[HttpPost]
 		public IActionResult AddAbonent(Abonent abonent)

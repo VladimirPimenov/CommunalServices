@@ -16,11 +16,11 @@ namespace CommunalServices.Controllers
 		}
 
 		[HttpGet("{ownerId:Guid}")]
-		public IActionResult GetOwnerFlats(Guid ownerId)
+		public IActionResult GetFlatsByOwnerId(Guid ownerId)
 		{
 			var flats = dbContext.Flat.Where(flat => flat.OwnerId == ownerId).ToList();
 
-			if(flats == null)
+			if(flats.Count == 0)
 			{
 				return NotFound();
 			}
@@ -31,7 +31,7 @@ namespace CommunalServices.Controllers
 		}
 
 		[HttpGet("{number}")]
-		public IActionResult GetFlatByNumber(string number)
+		public IActionResult GetFlatByPaymentNumber(string number)
 		{
 			Flat? flat = dbContext.Flat.Find(number);
 
