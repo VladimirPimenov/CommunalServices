@@ -1,4 +1,5 @@
 ﻿using CommunalServices.Models;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CommunalServices.Controllers
@@ -7,19 +8,12 @@ namespace CommunalServices.Controllers
 	[ApiController]
 	public class FlatController(ApplicationDbContext dbContext) : Controller
 	{
-		[HttpGet("{ownerId:Guid}")]
-		public IActionResult GetFlatsByOwnerId(Guid ownerId)
+		[HttpGet("{abonentId:Guid}")]
+		public IActionResult GetFlatsByOwnerId(Guid abonentId)
 		{
-			var flats = dbContext.Flat.Where(flat => flat.OwnerId == ownerId).ToList();
+			var flats = dbContext.Flat.Where(flat => flat.AbonentId == abonentId).ToList();
 
-			if(flats.Count == 0)
-			{
-				return NotFound();
-			}
-			else
-			{
-				return Ok(flats);
-			}
+			return flats.Count == 0 ? NotFound() : Ok(flats);
 		}
 
 		[HttpGet("{payNumber}")]

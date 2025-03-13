@@ -28,13 +28,14 @@ namespace CommunalServices.Controllers
 		{
 			dbContext.Abonent.Add(abonent);
 			dbContext.SaveChanges();
+
 			return Ok(abonent);
 		}
 
-		[HttpPut("{id:Guid}")]
-		public IActionResult UpdateAbonent(Guid id, Abonent updatedAbonent)
+		[HttpPut("{abonentId:Guid}")]
+		public IActionResult UpdateAbonent(Guid abonentId, Abonent updatedAbonent)
 		{
-			var abonent = dbContext.Abonent.Find(id);
+			var abonent = dbContext.Abonent.Find(abonentId);
 
 			if(abonent == null)
 			{
@@ -52,22 +53,17 @@ namespace CommunalServices.Controllers
 			}
 		}
 
-		[HttpDelete ("{id:Guid}")]
-		public IActionResult DeleteAbonent(Guid id)
+		[HttpDelete("{abonentId:Guid}")]
+		public IActionResult DeleteAbonent(Guid abonentId)
 		{
-			Abonent? abonent = dbContext.Abonent.Find(id);
+			Abonent? abonent = dbContext.Abonent.Find(abonentId);
 
-			if(abonent == null)
-			{
-				return NotFound();
-			}
-			else
-			{
-				dbContext.Abonent.Remove(abonent);
-				dbContext.SaveChanges();
+			if(abonent == null) return NotFound();
 
-				return Ok(id);
-			}
+			dbContext.Abonent.Remove(abonent);
+			dbContext.SaveChanges();
+
+			return Ok(abonentId);
 		}
 	}
 }

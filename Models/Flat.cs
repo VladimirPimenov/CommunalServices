@@ -6,6 +6,6 @@ namespace CommunalServices.Models
 	{
 		[Key]
 		public string PaymentNumber { get; set; }
-		public Guid OwnerId { get; set; }
+		public Guid AbonentId { get; set; }
 	}
 }
