@@ -1,20 +1,12 @@
-﻿using CommunalServices.Data;
-using CommunalServices.Models;
+﻿using CommunalServices.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CommunalServices.Controllers
 {
 	[Route("/Flat")]
 	[ApiController]
-	public class FlatController : Controller
+	public class FlatController(ApplicationDbContext dbContext) : Controller
 	{
-		private ApplicationDbContext dbContext;
-
-		public FlatController(ApplicationDbContext dbContext)
-		{
-			this.dbContext = dbContext;
-		}
-
 		[HttpGet("{ownerId:Guid}")]
 		public IActionResult GetFlatsByOwnerId(Guid ownerId)
 		{
@@ -30,19 +22,12 @@ namespace CommunalServices.Controllers
 			}
 		}
 
-		[HttpGet("{number}")]
-		public IActionResult GetFlatByPaymentNumber(string number)
+		[HttpGet("{payNumber}")]
+		public IActionResult GetFlatByPaymentNumber(string payNumber)
 		{
-			Flat? flat = dbContext.Flat.Find(number);
+			var flat = dbContext.Flat.Find(payNumber);
 
-			if (flat == null)
-			{
-				return NotFound();
-			}
-			else
-			{
-				return Ok(flat);
-			}
+			return flat == null ? NotFound() : Ok(flat);
 		}
 	}
 }

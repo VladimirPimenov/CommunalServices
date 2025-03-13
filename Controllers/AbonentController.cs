@@ -1,32 +1,18 @@
-﻿using CommunalServices.Data;
-using CommunalServices.Models;
+﻿using CommunalServices.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CommunalServices.Controllers
 {
 	[Route("/Abonent")]
 	[ApiController]
-	public class AbonentController : ControllerBase
+	public class AbonentController(ApplicationDbContext dbContext) : ControllerBase
 	{
-		private ApplicationDbContext dbContext;
-		public AbonentController(ApplicationDbContext dbContext)
-		{
-			this.dbContext = dbContext;
-		}
-
 		[HttpGet("{id:Guid}")]
 		public IActionResult GetAbonentById(Guid id)
 		{
-			Abonent? abonent = dbContext.Abonent.Find(id);
+			var abonent = dbContext.Abonent.Find(id);
 
-			if (abonent == null)
-			{
-				return NotFound();
-			}
-			else
-			{
-				return Ok(abonent);
-			}
+			return abonent == null ? NotFound() : Ok(abonent);
 		}
 
 		[HttpGet("{login}")]
@@ -34,14 +20,7 @@ namespace CommunalServices.Controllers
 		{
 			var abonent = dbContext.Abonent.FirstOrDefault(abonent => abonent.Login == login);
 
-            if (abonent == null)
-			{
-				return NotFound();
-			}
-			else
-			{
-				return Ok(abonent);
-			}
+			return abonent == null ? NotFound() : Ok(abonent);
 		}
 
 		[HttpPost]
@@ -49,13 +28,13 @@ namespace CommunalServices.Controllers
 		{
 			dbContext.Abonent.Add(abonent);
 			dbContext.SaveChanges();
-			return Ok();
+			return Ok(abonent);
 		}
 
 		[HttpPut("{id:Guid}")]
 		public IActionResult UpdateAbonent(Guid id, Abonent updatedAbonent)
 		{
-			Abonent? abonent = dbContext.Abonent.Find(id);
+			var abonent = dbContext.Abonent.Find(id);
 
 			if(abonent == null)
 			{
@@ -69,7 +48,7 @@ namespace CommunalServices.Controllers
 
 				dbContext.SaveChanges();
 
-				return Ok();
+				return Ok(abonent);
 			}
 		}
 
@@ -87,7 +66,7 @@ namespace CommunalServices.Controllers
 				dbContext.Abonent.Remove(abonent);
 				dbContext.SaveChanges();
 
-				return Ok();
+				return Ok(id);
 			}
 		}
 	}

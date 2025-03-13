@@ -1,4 +1,3 @@
-using CommunalServices.Data;
 using Microsoft.EntityFrameworkCore;
 
 namespace CommunalServices
