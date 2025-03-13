@@ -1,33 +1,32 @@
-﻿using CommunalServices.Data;
-using CommunalServices.Models;
+﻿using CommunalServices.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.Reflection.Metadata.Ecma335;
 
 namespace CommunalServices.Controllers
 {
     [Route("/Debt")]
     [ApiController]
-    public class DebtController : Controller
+    public class DebtController(ApplicationDbContext dbContext) : Controller
     {
-        private ApplicationDbContext dbContext;
-
-        public DebtController(ApplicationDbContext dbContext)
-        {
-            this.dbContext = dbContext;
-        }
-
         [HttpGet("{payNumber}")]
         public IActionResult GetDebtsByPaymentNumber(string payNumber)
         {
             var debts = dbContext.Debt.Where(debt => debt.PaymentNumber == payNumber).ToList();
 
-            if(debts.Count == 0)
-            {
-                return NotFound();
-            }
-            else
-            {
-                return Ok(debts);
-            }
+            return debts.Count == 0 ? NotFound() : Ok(debts);
+        }
+
+        [HttpDelete("{debtId}")]
+        public IActionResult RemoveDebtById(Guid debtId)
+        {
+            var debt = dbContext.Debt.Find(debtId);
+
+            if (debt == null) return NotFound();
+
+            dbContext.Debt.Remove(debt);
+            dbContext.SaveChanges();
+
+            return Ok(debtId);
         }
     }
 }
