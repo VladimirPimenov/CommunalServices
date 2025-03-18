@@ -1,6 +1,7 @@
 ﻿using CommunalServices.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace CommunalServices.Controllers
 {
@@ -9,17 +10,15 @@ namespace CommunalServices.Controllers
 	public class FlatController(ApplicationDbContext dbContext) : Controller
 	{
 		[HttpGet("{abonentId:Guid}")]
-		public IActionResult GetFlatsByOwnerId(Guid abonentId)
+		public IActionResult GetFlatsByAbonentId(Guid abonentId)
 		{
-			var flats = dbContext.Flat.Where(flat => flat.AbonentId == abonentId).ToList();
-
-			return flats.Count == 0 ? NotFound() : Ok(flats);
+			throw new NotImplementedException();
 		}
 
 		[HttpGet("{payNumber}")]
-		public IActionResult GetFlatByPaymentNumber(string payNumber)
+		public async Task<IActionResult> GetFlatByPaymentNumber(string payNumber)
 		{
-			var flat = dbContext.Flat.Find(payNumber);
+			var flat = await dbContext.Flat.FindAsync(payNumber);
 
 			return flat == null ? NotFound() : Ok(flat);
 		}

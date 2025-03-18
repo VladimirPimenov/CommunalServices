@@ -1,6 +1,6 @@
 ﻿using CommunalServices.Models;
 using Microsoft.AspNetCore.Mvc;
-using System.Reflection.Metadata.Ecma335;
+using Microsoft.EntityFrameworkCore;
 
 namespace CommunalServices.Controllers
 {
@@ -9,22 +9,22 @@ namespace CommunalServices.Controllers
     public class DebtController(ApplicationDbContext dbContext) : Controller
     {
         [HttpGet("{payNumber}")]
-        public IActionResult GetDebtsByPaymentNumber(string payNumber)
+        public async Task<IActionResult> GetDebtsByPaymentNumber(string payNumber)
         {
-            var debts = dbContext.Debt.Where(debt => debt.PaymentNumber == payNumber).ToList();
+            var debts = await dbContext.Debt.Where(debt => debt.PaymentNumber == payNumber).ToListAsync();
 
             return debts.Count == 0 ? NotFound() : Ok(debts);
         }
 
         [HttpDelete("{debtId}")]
-        public IActionResult RemoveDebtById(Guid debtId)
+        public async Task<IActionResult> RemoveDebtById(Guid debtId)
         {
-            var debt = dbContext.Debt.Find(debtId);
+            var debt = await dbContext.Debt.FindAsync(debtId);
 
             if (debt == null) return NotFound();
 
             dbContext.Debt.Remove(debt);
-            dbContext.SaveChanges();
+            await dbContext.SaveChangesAsync();
 
             return Ok(debtId);
         }

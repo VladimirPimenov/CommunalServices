@@ -1,5 +1,6 @@
 ﻿using CommunalServices.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace CommunalServices.Controllers
 {
@@ -8,54 +9,54 @@ namespace CommunalServices.Controllers
 	public class AbonentController(ApplicationDbContext dbContext) : ControllerBase
 	{
 		[HttpGet("{id:Guid}")]
-		public IActionResult GetAbonentById(Guid id)
+		public async Task<IActionResult> GetAbonentById(Guid id)
 		{
-			var abonent = dbContext.Abonent.Find(id);
+			var abonent = await dbContext.Abonent.FindAsync(id);
 
 			return abonent == null ? NotFound() : Ok(abonent);
 		}
 
 		[HttpGet("{login}")]
-		public IActionResult GetAbonentByLogin(string login)
+		public async Task<IActionResult> GetAbonentByLogin(string login)
 		{
-			var abonent = dbContext.Abonent.FirstOrDefault(abonent => abonent.Login == login);
+			var abonent = await dbContext.Abonent.FirstOrDefaultAsync(abonent => abonent.Login == login);
 
 			return abonent == null ? NotFound() : Ok(abonent);
 		}
 
 		[HttpPost]
-		public IActionResult AddAbonent(AbonentDTO abonent)
+		public async Task<IActionResult> AddAbonent(AbonentDTO abonent)
 		{
-			dbContext.Abonent.Add(abonent.ConvertToAbonent());
-			dbContext.SaveChanges();
+			await dbContext.Abonent.AddAsync(abonent.ConvertToAbonent());
+			await dbContext.SaveChangesAsync();
 
 			return Ok(abonent);
 		}
 
 		[HttpPut("{abonentId:Guid}")]
-		public IActionResult UpdateAbonent(Guid abonentId, AbonentDTO updatedAbonent)
+		public async Task<IActionResult> UpdateAbonent(Guid abonentId, AbonentDTO updatedAbonent)
 		{
-			var abonent = dbContext.Abonent.Find(abonentId);
+			var abonent = await dbContext.Abonent.FindAsync(abonentId);
 
 			if (abonent == null) return NotFound();
 
             abonent.Login = updatedAbonent.Login;
             abonent.Password = updatedAbonent.Password;
             abonent.Email = updatedAbonent.Email;
-            dbContext.SaveChanges();
+            await dbContext.SaveChangesAsync();
 
 			return Ok(abonent);
 		}
 
 		[HttpDelete("{abonentId:Guid}")]
-		public IActionResult DeleteAbonent(Guid abonentId)
+		public async Task<IActionResult> DeleteAbonent(Guid abonentId)
 		{
-			var abonent = dbContext.Abonent.Find(abonentId);
+			var abonent = await dbContext.Abonent.FindAsync(abonentId);
 
 			if(abonent == null) return NotFound();
 
 			dbContext.Abonent.Remove(abonent);
-			dbContext.SaveChanges();
+			await dbContext.SaveChangesAsync();
 
 			return Ok(abonentId);
 		}
