@@ -6,6 +6,8 @@ namespace CommunalServices.Models
 	{
 		[Key]
 		public string PaymentNumber { get; set; }
-		public Guid AbonentId { get; set; }
+		public string Region { get; set; }
+		public string City { get; set; }
+		public string Street { get; set; }
 	}
 }
