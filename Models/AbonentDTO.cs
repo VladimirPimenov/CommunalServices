@@ -1,4 +1,6 @@
-﻿namespace CommunalServices.Models
+﻿using Microsoft.AspNetCore.Identity;
+
+namespace CommunalServices.Models
 {
     public class AbonentDTO
     {
@@ -17,6 +19,18 @@
                 Email = this.Email,
                 FirstName = this.FirstName,
                 LastName = this.LastName
+            };
+        }
+
+        public static AbonentDTO FromAbonent(Abonent abonent)
+        {
+            return new AbonentDTO
+            {
+                Login = abonent.Login,
+                Password = abonent.Password,
+                Email = abonent.Email,
+                FirstName = abonent.FirstName,
+                LastName = abonent.LastName
             };
         }
     }
