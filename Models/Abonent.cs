@@ -1,11 +1,8 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.Security.AccessControl;
-
-namespace CommunalServices.Models
+﻿namespace CommunalServices.Models
 {
 	/// <summary>
-	/// Представляет абонента в системе коммунальных услуг.
-	/// Этот класс содержит информацию о пользователе.
+	/// Представляет абонента в системе жилищно-коммунальных услуг.
+	/// Этот класс содержит информацию о пользователе приложения.
 	/// </summary>
 	public class Abonent
 	{

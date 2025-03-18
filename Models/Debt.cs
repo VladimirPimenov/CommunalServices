@@ -1,9 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace CommunalServices.Models
+﻿namespace CommunalServices.Models
 {
 	/// <summary>
-	/// Представляет задолженность абонента в системе коммунальных услуг.
+	/// Представляет задолженность в системе жилищно-коммунальных услуг.
 	/// Этот класс содержит информацию о задолженности.
 	public class Debt
 	{

@@ -1,7 +1,8 @@
-﻿using Microsoft.AspNetCore.Identity;
-
-namespace CommunalServices.Models
+﻿namespace CommunalServices.Models
 {
+    /// <summary>
+    /// DTO для передачи данных об абоненте.
+    /// </summary>
     public class AbonentDTO
     {
         public string Login { get; set; }

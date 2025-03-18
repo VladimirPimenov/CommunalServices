@@ -1,9 +1,7 @@
-using System.ComponentModel.DataAnnotations;
-
 namespace CommunalServices.Models
 {
     /// <summary>
-    /// DTO для передачи данных о квартире
+    /// DTO для передачи данных о квартире.
     /// </summary>
     public class FlatDTO
     {

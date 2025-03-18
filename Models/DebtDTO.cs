@@ -1,7 +1,8 @@
-using System.ComponentModel.DataAnnotations;
-
 namespace CommunalServices.Models
 {
+    /// <summary>
+    /// DTO для передачи данных о задолженности.
+    /// </summary>
     public class DebtDTO
     {
         public string PaymentNumber { get; set; }
