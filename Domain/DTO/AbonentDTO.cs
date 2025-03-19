@@ -1,4 +1,6 @@
-﻿namespace CommunalServices.Models
+﻿using CommunalServices.Domain.Entities;
+
+namespace CommunalServices.Domain.DTO
 {
     /// <summary>
     /// DTO для передачи данных об абоненте.
@@ -15,11 +17,11 @@
         {
             return new Abonent()
             {
-                Login = this.Login,
-                Password = this.Password,
-                Email = this.Email,
-                FirstName = this.FirstName,
-                LastName = this.LastName
+                Login = Login,
+                Password = Password,
+                Email = Email,
+                FirstName = FirstName,
+                LastName = LastName
             };
         }
 

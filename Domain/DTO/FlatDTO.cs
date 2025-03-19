@@ -1,4 +1,6 @@
-namespace CommunalServices.Models
+using CommunalServices.Domain.Entities;
+
+namespace CommunalServices.Domain.DTO
 {
     /// <summary>
     /// DTO для передачи данных о квартире.
@@ -14,13 +16,13 @@ namespace CommunalServices.Models
         {
             return new Flat
             {
-                PaymentNumber = this.PaymentNumber,
-                Region = this.Region,
-                City = this.City,
-                Street = this.Street
+                PaymentNumber = PaymentNumber,
+                Region = Region,
+                City = City,
+                Street = Street
             };
         }
-        
+
         public static FlatDTO FromFlat(Flat flat)
         {
             return new FlatDTO
@@ -32,4 +34,4 @@ namespace CommunalServices.Models
             };
         }
     }
-} 
+}

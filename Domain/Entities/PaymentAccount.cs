@@ -1,4 +1,6 @@
-﻿namespace CommunalServices.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace CommunalServices.Domain.Entities
 {
     /// <summary>
     /// Представляет платежный аккаунт в системе жилищно-коммунальных услуг.
@@ -9,6 +11,7 @@
         /// <summary>
         /// Уникальный идентификатор платежа.
         /// </summary>
+        [Key]
         public Guid PaymentId { get; set; }
 
         /// <summary>

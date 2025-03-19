@@ -1,8 +1,9 @@
+using CommunalServices.Storage;
 using Microsoft.EntityFrameworkCore;
 
 namespace CommunalServices
 {
-	public class Program
+    public class Program
 	{
 		public static void Main(string[] args)
 		{

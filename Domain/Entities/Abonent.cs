@@ -1,4 +1,4 @@
-﻿namespace CommunalServices.Models
+﻿namespace CommunalServices.Domain.Entities
 {
 	/// <summary>
 	/// Представляет абонента в системе жилищно-коммунальных услуг.

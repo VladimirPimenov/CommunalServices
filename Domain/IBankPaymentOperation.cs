@@ -1,4 +1,6 @@
-﻿namespace CommunalServices.Models
+﻿using CommunalServices.Domain.Entities;
+
+namespace CommunalServices.Domain
 {
     /// <summary>
     /// Интерфейс для операций оплаты через банк.

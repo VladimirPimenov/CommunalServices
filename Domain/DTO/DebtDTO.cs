@@ -1,4 +1,6 @@
-namespace CommunalServices.Models
+using CommunalServices.Domain.Entities;
+
+namespace CommunalServices.Domain.DTO
 {
     /// <summary>
     /// DTO для передачи данных о задолженности.
@@ -15,11 +17,11 @@ namespace CommunalServices.Models
         {
             return new Debt
             {
-                PaymentNumber = this.PaymentNumber,
-                ResourceType = this.ResourceType,
-                ResourceProvider = this.ResourceProvider,
-                AccrualDate = this.AccrualDate,
-                Amount = this.Amount
+                PaymentNumber = PaymentNumber,
+                ResourceType = ResourceType,
+                ResourceProvider = ResourceProvider,
+                AccrualDate = AccrualDate,
+                Amount = Amount
             };
         }
 
@@ -35,4 +37,4 @@ namespace CommunalServices.Models
             };
         }
     }
-} 
+}
