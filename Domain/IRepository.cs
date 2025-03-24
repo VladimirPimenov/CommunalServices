@@ -10,5 +10,7 @@ namespace CommunalServices.Domain
 		public Task<Abonent> AddAbonentAsync(AbonentDTO abonent);
 		public Task<Abonent> UpdateAbonentAsync(Abonent updatedAbonent);
 		public Task<Guid> RemoveAbonentAsync(Guid abonentId);
+
+        public Task<List<Flat>> GetAbonentFlatsAsync(Abonent abonent);
     }
 }

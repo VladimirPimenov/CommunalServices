@@ -33,13 +33,10 @@ namespace CommunalServices.Storage
 
         public async Task<Abonent> UpdateAbonentAsync(Abonent updatedAbonent)
         {
-            var abonent = await _context.Abonent.FirstOrDefaultAsync(abonent => abonent.Login == updatedAbonent.Login);
-
-            _context.Attach(abonent);
-            abonent = updatedAbonent;
+            _context.Attach(updatedAbonent);
             await _context.SaveChangesAsync();
 
-            return abonent;
+            return updatedAbonent;
         }
 
         public async Task<Guid> RemoveAbonentAsync(Guid abonentId)
@@ -50,6 +47,23 @@ namespace CommunalServices.Storage
             await _context.SaveChangesAsync();
 
             return abonentId;
+        }
+
+        public async Task<List<Flat>> GetAbonentFlatsAsync(Abonent abonent)
+        {
+            var paymentNumbers = await GetAbonentPaymentNumbers(abonent);
+            
+            var flats = await _context.Flat.Where(flat => paymentNumbers.Contains(flat.PaymentNumber)).ToListAsync();
+
+            return flats;
+        }
+        public async Task<List<string>> GetAbonentPaymentNumbers(Abonent abonent)
+        {
+            var paymentNumbers = await _context.AbonentsFlats
+                                                .Where(a => a.AbonentId == abonent.Id)
+                                                .Select(a => a.PaymentNumber)
+                                                .ToListAsync();
+            return paymentNumbers;
         }
     }
 }
