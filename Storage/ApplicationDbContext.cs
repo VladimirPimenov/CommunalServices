@@ -9,6 +9,7 @@ namespace CommunalServices.Storage
         public DbSet<Flat> Flat { get; set; }
         public DbSet<Debt> Debt { get; set; }
         public DbSet<PaymentAccount> PaymentAccount { get; set; }
+        public DbSet<AbonentsFlats> AbonentsFlats { get; set; }
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
     }
 }
