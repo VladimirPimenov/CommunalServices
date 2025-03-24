@@ -9,7 +9,7 @@
 		/// <summary>
 		/// Уникальный идентификатор абонента.
 		/// </summary>
-		public Guid Id { get; set; }
+		public int Id { get; set; }
 
 		/// <summary>
 		/// Логин абонента.
@@ -35,5 +35,10 @@
 		/// Фамилия абонента.
 		/// </summary>
 		public string LastName { get; set; }
+
+		public bool IsValidPassword(string password)
+		{
+			return Password == password;
+		}
 	}
 }

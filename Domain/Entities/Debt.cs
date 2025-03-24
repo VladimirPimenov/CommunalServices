@@ -8,7 +8,7 @@
         /// <summary>
         /// Уникальный идентификатор задолженности.
         /// </summary>
-        public Guid Id { get; set; }
+        public int Id { get; set; }
 
         /// <summary>
         /// Номер лицевого счета квартиры.
