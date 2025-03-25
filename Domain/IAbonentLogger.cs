@@ -5,6 +5,7 @@ namespace CommunalServices.Domain
 {
     public interface IAbonentLogger
     {
+        public Task<AbonentDTO> TryRegister(AbonentDTO newAbonent);
         public Task<AbonentDTO> TryLoginAsync(string login, string password);
 
         public Task<AbonentDTO> ChangePassword(AbonentDTO updatedAbonent);

@@ -5,11 +5,17 @@ namespace CommunalServices.Domain
 {
     public class AbonentLogger(IRepository _repository):IAbonentLogger
     {
+        public async Task<AbonentDTO> TryRegister(AbonentDTO newAbonent)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<AbonentDTO> TryLoginAsync(string login, string password)
         {
             var abonent = await _repository.GetAbonentByLoginAsync(login);
 
-            if (abonent == null || !abonent.IsValidPassword(password)) return null;
+            if (abonent == null || !abonent.IsValidPassword(password)) 
+                return null;
 
             return AbonentDTO.FromAbonent(abonent);
         }
@@ -29,7 +35,8 @@ namespace CommunalServices.Domain
         {
             var abonent = await _repository.GetAbonentByLoginAsync(login);
 
-            if (abonent == null) return null;
+            if (abonent == null) 
+                return null;
 
             var flats = await _repository.GetAbonentFlatsAsync(abonent);
 
