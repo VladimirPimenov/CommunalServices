@@ -5,7 +5,7 @@ namespace CommunalServices.Domain
 {
     public class AbonentLogger(IRepository _repository):IAbonentLogger
     {
-        public async Task<AbonentDTO> TryRegister(AbonentDTO newAbonent)
+        public async Task<AbonentDTO> TryRegisterAsync(AbonentDTO newAbonent)
         {
             throw new NotImplementedException();
         }
@@ -20,7 +20,7 @@ namespace CommunalServices.Domain
             return AbonentDTO.FromAbonent(abonent);
         }
 
-        public async Task<AbonentDTO> ChangePassword(AbonentDTO updatedAbonent)
+        public async Task<AbonentDTO> ChangePasswordAsync(AbonentDTO updatedAbonent)
         {
             var abonent = await _repository.GetAbonentByLoginAsync(updatedAbonent.Login);
 
@@ -31,7 +31,7 @@ namespace CommunalServices.Domain
             return AbonentDTO.FromAbonent(abonent);
         }
 
-        public async Task<List<Flat>> GetAbonentFlats(string login)
+        public async Task<List<Flat>> GetAbonentFlatsAsync(string login)
         {
             var abonent = await _repository.GetAbonentByLoginAsync(login);
 

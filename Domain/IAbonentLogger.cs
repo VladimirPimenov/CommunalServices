@@ -5,11 +5,11 @@ namespace CommunalServices.Domain
 {
     public interface IAbonentLogger
     {
-        public Task<AbonentDTO> TryRegister(AbonentDTO newAbonent);
+        public Task<AbonentDTO> TryRegisterAsync(AbonentDTO newAbonent);
         public Task<AbonentDTO> TryLoginAsync(string login, string password);
 
-        public Task<AbonentDTO> ChangePassword(AbonentDTO updatedAbonent);
+        public Task<AbonentDTO> ChangePasswordAsync(AbonentDTO updatedAbonent);
 
-        public Task<List<Flat>> GetAbonentFlats(string login);
+        public Task<List<Flat>> GetAbonentFlatsAsync(string login);
     }
 }
