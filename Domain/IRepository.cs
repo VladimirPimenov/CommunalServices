@@ -12,5 +12,8 @@ namespace CommunalServices.Domain
 		public Task<Guid> RemoveAbonentAsync(Guid abonentId);
 
         public Task<List<Flat>> GetAbonentFlatsAsync(Abonent abonent);
+
+        public Task<Flat> GetFlatByPaymentNumber(string paymentNumber);
+        public Task<List<Debt>> GetFlatDebts(Flat flat);
     }
 }

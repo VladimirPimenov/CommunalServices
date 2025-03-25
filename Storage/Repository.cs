@@ -65,5 +65,18 @@ namespace CommunalServices.Storage
                                                 .ToListAsync();
             return paymentNumbers;
         }
+
+        public async Task<Flat> GetFlatByPaymentNumber(string paymentNumber)
+        {
+            var flat = await _context.Flat.FindAsync(paymentNumber);
+
+            return flat;
+        }
+        public async Task<List<Debt>> GetFlatDebts(Flat flat)
+        {
+            var debts = await _context.Debt.Where(debt => debt.PaymentNumber == flat.PaymentNumber).ToListAsync();
+
+            return debts;
+        }
     }
 }
