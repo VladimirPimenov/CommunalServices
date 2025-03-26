@@ -1,4 +1,6 @@
 using CommunalServices.Domain;
+using CommunalServices.Domain.Contracts;
+using CommunalServices.Domain.ContractsRealization;
 using CommunalServices.Storage;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,14 +13,14 @@ namespace CommunalServices
 			var builder = WebApplication.CreateBuilder(args);
 
 			builder.Services.AddControllers();
-			builder.Services.AddEndpointsApiExplorer();
+            builder.Services.AddEndpointsApiExplorer();
 			builder.Services.AddSwaggerGen();
 
 			builder.Services.AddDbContext<ApplicationDbContext>(options =>
 			options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-			builder.Services.AddScoped<IRepository, Repository>();
-			builder.Services.AddScoped<IAbonentLogger, AbonentLogger>();
+			builder.Services.AddTransient<IRepository, Repository>();
+			builder.Services.AddTransient<IAbonentAuthenticationService, AbonentAuthenticationService>();
 
             var app = builder.Build();
 

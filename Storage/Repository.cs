@@ -1,5 +1,4 @@
 using CommunalServices.Domain;
-using CommunalServices.Domain.DTO;
 using CommunalServices.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
@@ -21,14 +20,12 @@ namespace CommunalServices.Storage
             return abonent;
         }
 
-        public async Task<Abonent> AddAbonentAsync(AbonentDTO abonentDto)
+        public async Task<Abonent> AddAbonentAsync(Abonent newAbonent)
         {
-            var abonent = abonentDto.ConvertToAbonent();
-
-            await _context.Abonent.AddAsync(abonent);
+            await _context.Abonent.AddAsync(newAbonent);
             await _context.SaveChangesAsync();
 
-            return abonent;
+            return newAbonent;
         }
 
         public async Task<Abonent> UpdateAbonentAsync(Abonent updatedAbonent)

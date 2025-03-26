@@ -1,4 +1,6 @@
-﻿namespace CommunalServices.Domain.Entities
+﻿using System.Text.Json.Serialization;
+
+namespace CommunalServices.Domain.Entities
 {
 	/// <summary>
 	/// Представляет абонента в системе жилищно-коммунальных услуг.
@@ -22,10 +24,11 @@
 		/// Пароль абонента. 
 		/// При установке пароля он автоматически хешируется.
 		/// </summary>
+		[JsonIgnore]
 		public string Password 
 		{
 			get { return hashedPassword; }
-			set { HashPassword(value); }
+			set { hashedPassword = HashPassword(value); }
 		}
 
 		/// <summary>
@@ -50,16 +53,16 @@
 		/// <returns>true, если пароль соответствует; иначе false.</returns>
 		public bool IsValidPassword(string password)
 		{
-			return Password == password;
+			return Password == HashPassword(password);
 		}
 
 		/// <summary>
 		/// Хеширует пароль абонента.
 		/// </summary>
 		/// <param name="password">Пароль, который нужно захешировать.</param>
-		private void HashPassword(string password)
+		private string HashPassword(string password)
 		{
-			hashedPassword = password;
+			return password;
 		}
 	}
 }
