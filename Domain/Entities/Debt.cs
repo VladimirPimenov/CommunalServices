@@ -1,4 +1,6 @@
-﻿namespace CommunalServices.Domain.Entities
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace CommunalServices.Domain.Entities
 {
     /// <summary>
     /// Представляет задолженность в системе жилищно-коммунальных услуг.
@@ -8,7 +10,7 @@
         /// <summary>
         /// Уникальный идентификатор задолженности.
         /// </summary>
-        public int Id { get; set; }
+        public int DebtId { get; set; }
 
         /// <summary>
         /// Номер лицевого счета квартиры.

@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Serialization;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace CommunalServices.Domain.Entities
 {
@@ -8,10 +9,10 @@ namespace CommunalServices.Domain.Entities
 	/// </summary>
 	public class Abonent
 	{
-		/// <summary>
-		/// Уникальный идентификатор абонента.
-		/// </summary>
-		public int Id { get; set; }
+        /// <summary>
+        /// Уникальный идентификатор абонента.
+        /// </summary>
+        public int AbonentId { get; set; }
 
 		/// <summary>
 		/// Логин абонента.

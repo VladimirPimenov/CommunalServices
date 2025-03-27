@@ -9,9 +9,12 @@ namespace CommunalServices.Domain.Entities
     public class Flat
     {
         /// <summary>
+		/// Уникальный идентификатор квартиры.
+		/// </summary>
+        public int FlatId { get; set; }
+        /// <summary>
         /// Номер лицевого счета квартиры.
         /// </summary>
-        [Key]
         public string PaymentNumber { get; set; }
 
         /// <summary>
