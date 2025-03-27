@@ -1,6 +1,6 @@
-﻿using CommunalServices.Domain.Entities;
+﻿using CommunalServices.Domain.Contracts;
+using CommunalServices.Domain.Entities;
 using CommunalServices.Domain.DTO;
-using CommunalServices.Domain.Contracts;
 
 namespace CommunalServices.Domain.ContractsRealization
 {
