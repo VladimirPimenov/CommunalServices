@@ -4,11 +4,11 @@ namespace CommunalServices.Domain
 {
     public interface IRepository
     {
-        public Task<Abonent> GetAbonentByIdAsync(Guid id);
+        public Task<Abonent> GetAbonentByIdAsync(int id);
 		public Task<Abonent> GetAbonentByLoginAsync(string login);
 		public Task<Abonent> AddAbonentAsync(Abonent newAbonent);
 		public Task<Abonent> UpdateAbonentAsync(Abonent updatedAbonent);
-		public Task<Guid> RemoveAbonentAsync(Guid abonentId);
+		public Task<int> RemoveAbonentAsync(int abonentId);
 
         public Task<List<Flat>> GetAbonentFlatsAsync(Abonent abonent);
 
