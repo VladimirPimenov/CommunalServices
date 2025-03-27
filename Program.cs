@@ -21,6 +21,7 @@ namespace CommunalServices
 
 			builder.Services.AddTransient<IRepository, Repository>();
 			builder.Services.AddTransient<IAbonentAuthenticationService, AbonentAuthenticationService>();
+			builder.Services.AddTransient<IDebtPaymentService, DebtPaymentService>();
 
             var app = builder.Build();
 
