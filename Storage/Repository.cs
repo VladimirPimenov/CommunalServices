@@ -71,5 +71,38 @@ namespace CommunalServices.Storage
 
             return debts;
         }
+
+        public async Task<Debt> GetDebtByIdAsync(int debtId)
+        {
+            var debt = await _context.Debt.FindAsync(debtId);
+
+            return debt;
+        }
+        public async Task<int> RemoveDebtAsync(int debtId)
+        {
+            var debt = await _context.Debt.FindAsync(debtId);
+
+            _context.Debt.Remove(debt);
+            await _context.SaveChangesAsync();
+
+            return debtId;
+        }
+
+        public async Task<PaymentAccount> AddPaymentAccountAsync(PaymentAccount paymentAccount)
+        {
+            await _context.PaymentAccount.AddAsync(paymentAccount);
+            await _context.SaveChangesAsync();
+
+            return paymentAccount;
+        }
+        public async Task<int> RemovePaymentAccountAsync(int paymentId)
+        {
+            var paymentAccount = await _context.PaymentAccount.FindAsync(paymentId);
+
+            _context.PaymentAccount.Remove(paymentAccount);
+            await _context.SaveChangesAsync();
+
+            return paymentId;
+        }
     }
 }

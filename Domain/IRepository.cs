@@ -14,5 +14,11 @@ namespace CommunalServices.Domain
 
         public Task<Flat> GetFlatByPaymentNumberAsync(string paymentNumber);
         public Task<List<Debt>> GetFlatDebtsAsync(Flat flat);
+
+        public Task<Debt> GetDebtByIdAsync(int debtId);
+        public Task<int> RemoveDebtAsync(int debtId);
+
+        public Task<PaymentAccount> AddPaymentAccountAsync(PaymentAccount paymentAccount);
+        public Task<int> RemovePaymentAccountAsync(int paymentAccountId);
     }
 }
