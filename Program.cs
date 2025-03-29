@@ -20,6 +20,7 @@ namespace CommunalServices
 			options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 			builder.Services.AddTransient<IRepository, Repository>();
+			builder.Services.AddTransient<IBankPaymentService, MockBankPaymentService>();
 			builder.Services.AddTransient<IAbonentAuthenticationService, AbonentAuthenticationService>();
 			builder.Services.AddTransient<IDebtPaymentService, DebtPaymentService>();
 
