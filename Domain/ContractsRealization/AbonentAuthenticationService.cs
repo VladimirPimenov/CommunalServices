@@ -8,14 +8,18 @@ namespace CommunalServices.Domain.ContractsRealization
     {
         public async Task<Abonent> RegisterAsync(AbonentDTO newAbonent)
         {
-            throw new NotImplementedException();
+            if (await isAbonentExistsAsync(newAbonent))
+                return null;
+
+            var registeredAbonent = await _repository.AddAbonentAsync(ConvertToAbonent(newAbonent));
+            return registeredAbonent;
         }
 
         public async Task<Abonent> LoginAsync(string login, string password)
         {
             var abonent = await _repository.GetAbonentByLoginAsync(login);
 
-            if (abonent == null || !abonent.IsValidPassword(password))
+            if (!abonent.IsValidPassword(password))
                 return null;
 
             return abonent;
@@ -30,6 +34,27 @@ namespace CommunalServices.Domain.ContractsRealization
             await _repository.UpdateAbonentAsync(abonent);
 
             return abonent;
+        }
+
+        private Abonent ConvertToAbonent(AbonentDTO abonentDto)
+        {
+            return new Abonent
+            {
+                Login = abonentDto.Login,
+                Password = abonentDto.Password,
+                Email = abonentDto.Email,
+                FirstName = abonentDto.FirstName,
+                LastName = abonentDto.LastName
+            };
+        }
+        private async Task<bool> isAbonentExistsAsync(AbonentDTO abonentDto)
+        {
+            var abonentByLogin = await _repository.GetAbonentByLoginAsync(abonentDto.Login);
+            var abonentByEmail = await _repository.GetAbonentByEmailAsync(abonentDto.Email);
+
+            if (abonentByLogin == null && abonentByEmail == null)
+                return false;
+            return true;
         }
     }
 }
