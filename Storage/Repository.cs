@@ -6,15 +6,15 @@ namespace CommunalServices.Storage
 {
     public class Repository(ApplicationDbContext _context) : IRepository
     {
-        public async Task<Abonent> GetAbonentByIdAsync(int id)
-        {
-            var abonent = await _context.Abonent.FindAsync(id);
-
-            return abonent;
-        }
         public async Task<Abonent> GetAbonentByLoginAsync(string login)
         {
             var abonent = await _context.Abonent.FirstOrDefaultAsync(abonent => abonent.Login == login);
+
+            return abonent;
+        }
+        public async Task<Abonent> GetAbonentByEmailAsync(string email)
+        {
+            var abonent = await _context.Abonent.FirstOrDefaultAsync(abonent => abonent.Email == email);
 
             return abonent;
         }

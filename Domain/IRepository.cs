@@ -4,9 +4,9 @@ namespace CommunalServices.Domain
 {
     public interface IRepository
     {
-        public Task<Abonent> GetAbonentByIdAsync(int id);
 		public Task<Abonent> GetAbonentByLoginAsync(string login);
-		public Task<Abonent> AddAbonentAsync(Abonent newAbonent);
+        public Task<Abonent> GetAbonentByEmailAsync(string email);
+        public Task<Abonent> AddAbonentAsync(Abonent newAbonent);
 		public Task<Abonent> UpdateAbonentAsync(Abonent updatedAbonent);
 		public Task<int> RemoveAbonentAsync(int abonentId);
 
