@@ -6,12 +6,12 @@ namespace CommunalServices.Domain.ContractsRealization
 {
     public class AbonentAuthenticationService(IRepository _repository) : IAbonentAuthenticationService
     {
-        public async Task<Abonent> TryRegisterAsync(AbonentDTO newAbonent)
+        public async Task<Abonent> RegisterAsync(AbonentDTO newAbonent)
         {
             throw new NotImplementedException();
         }
 
-        public async Task<Abonent> TryLoginAsync(string login, string password)
+        public async Task<Abonent> LoginAsync(string login, string password)
         {
             var abonent = await _repository.GetAbonentByLoginAsync(login);
 

@@ -10,19 +10,19 @@ namespace CommunalServices.Domain.Contracts
     public interface IAbonentAuthenticationService
     {
         /// <summary>
-        /// Выполяет попытку регистрации нового абонента.
+        /// Выполняет регистрацию нового абонента.
         /// </summary>
         /// <param name="newAbonent">DTO, содержащий информацию о новом абоненте.</param>
         /// <returns>Возвращает объект абонента, если регистрация прошла успешно; иначе null.</returns>
-        public Task<Abonent> TryRegisterAsync(AbonentDTO newAbonent);
+        public Task<Abonent> RegisterAsync(AbonentDTO newAbonentDto);
 
         /// <summary>
-        /// Выполняет попытку входа абонента в систему.
+        /// Выполняет вход абонента в систему.
         /// </summary>
         /// <param name="login">Логин абонента.</param>
         /// <param name="password">Пароль абонента.</param>
         /// <returns>Возвращает объект абонента, если вход прошел успешно; иначе null.</returns>
-        public Task<Abonent> TryLoginAsync(string login, string password);
+        public Task<Abonent> LoginAsync(string login, string password);
 
         /// <summary>
         /// Изменяет пароль абонента.
