@@ -9,7 +9,7 @@ namespace CommunalServices.Domain.Contracts
     public interface IDebtPaymentService
     {
         /// <summary>
-        /// Обрабатывает оплату задолженности.
+        /// Выполняет оплату задолженности.
         /// </summary>
         /// <param name="debtId">Идентификатор задолженности, которую нужно оплатить.</param>
         /// <returns>Возвращает объект задолженности после успешной оплаты; иначе null.</returns>
