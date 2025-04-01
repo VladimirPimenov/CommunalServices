@@ -23,6 +23,7 @@ namespace CommunalServices
 			builder.Services.AddTransient<IBankPaymentService, MockBankPaymentService>();
 			builder.Services.AddTransient<IAbonentAuthenticationService, AbonentAuthenticationService>();
 			builder.Services.AddTransient<IDebtPaymentService, DebtPaymentService>();
+			builder.Services.AddTransient<IFlatDebtsQueryService, FlatDebtsQueryService>();
 
             var app = builder.Build();
 
