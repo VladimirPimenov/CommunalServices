@@ -16,7 +16,7 @@ namespace CommunalServices
             builder.Services.AddEndpointsApiExplorer();
 			builder.Services.AddSwaggerGen();
 
-			builder.Services.AddDbContext<ApplicationDbContext>(options =>
+			builder.Services.AddDbContext<CommunalServicesPaymentContext>(options =>
 			options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 			builder.Services.AddTransient<IRepository, Repository>();

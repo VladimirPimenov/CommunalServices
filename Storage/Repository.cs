@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CommunalServices.Storage
 {
-    public class Repository(ApplicationDbContext _context) : IRepository
+    public class Repository(CommunalServicesPaymentContext _context) : IRepository
     {
         public async Task<Abonent> GetAbonentByLoginAsync(string login)
         {
@@ -61,7 +61,7 @@ namespace CommunalServices.Storage
 
         public async Task<Flat> GetFlatByPaymentNumberAsync(string paymentNumber)
         {
-            var flat = await _context.Flat.FindAsync(paymentNumber);
+            var flat = await _context.Flat.FirstOrDefaultAsync(flat => flat.PaymentNumber == paymentNumber);
 
             return flat;
         }
