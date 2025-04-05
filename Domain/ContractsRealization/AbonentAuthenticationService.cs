@@ -39,6 +39,9 @@ namespace CommunalServices.Domain.ContractsRealization
         {
             var abonent = await _repository.GetAbonentByLoginAsync(login);
 
+            if (abonent == null)
+                return null;
+
             if (!abonent.IsValidPassword(password))
                 return null;
 
