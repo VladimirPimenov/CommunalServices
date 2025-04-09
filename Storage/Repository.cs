@@ -8,15 +8,11 @@ namespace CommunalServices.Storage
     {
         public async Task<Abonent> GetAbonentByLoginAsync(string login)
         {
-            var abonent = await _context.Abonent.FirstOrDefaultAsync(abonent => abonent.Login == login);
-
-            return abonent;
+            return await _context.Abonent.FirstOrDefaultAsync(abonent => abonent.Login == login);
         }
         public async Task<Abonent> GetAbonentByEmailAsync(string email)
         {
-            var abonent = await _context.Abonent.FirstOrDefaultAsync(abonent => abonent.Email == email);
-
-            return abonent;
+            return await _context.Abonent.FirstOrDefaultAsync(abonent => abonent.Email == email);
         }
         public async Task<Abonent> AddAbonentAsync(Abonent newAbonent)
         {
@@ -61,9 +57,7 @@ namespace CommunalServices.Storage
 
         public async Task<Flat> GetFlatByPaymentNumberAsync(string paymentNumber)
         {
-            var flat = await _context.Flat.FirstOrDefaultAsync(flat => flat.PaymentNumber == paymentNumber);
-
-            return flat;
+            return await _context.Flat.FirstOrDefaultAsync(flat => flat.PaymentNumber == paymentNumber);
         }
         public async Task<List<Debt>> GetFlatDebtsAsync(Flat flat)
         {
