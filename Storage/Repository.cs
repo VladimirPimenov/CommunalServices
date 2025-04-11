@@ -61,16 +61,12 @@ namespace CommunalServices.Storage
         }
         public async Task<List<Debt>> GetFlatDebtsAsync(Flat flat)
         {
-            var debts = await _context.Debt.Where(debt => debt.PaymentNumber == flat.PaymentNumber).ToListAsync();
-
-            return debts;
+            return await _context.Debt.Where(debt => debt.PaymentNumber == flat.PaymentNumber).ToListAsync();
         }
 
         public async Task<Debt> GetDebtByIdAsync(int debtId)
         {
-            var debt = await _context.Debt.FindAsync(debtId);
-
-            return debt;
+            return await _context.Debt.FindAsync(debtId);
         }
         public async Task<int> RemoveDebtAsync(int debtId)
         {
