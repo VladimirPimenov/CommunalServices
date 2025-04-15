@@ -25,6 +25,7 @@ namespace CommunalServices
 			builder.Services.AddTransient<IDebtPaymentService, DebtPaymentService>();
 			builder.Services.AddTransient<IFlatDebtsQueryService, FlatDebtsQueryService>();
 			builder.Services.AddTransient<IAbonentFlatsQueryService, AbonentFlatsQueryService>();
+			builder.Services.AddTransient<IEmailNoticeService, EmailNoticeService>();
 
             var app = builder.Build();
 
