@@ -9,27 +9,20 @@ namespace CommunalServices.Controllers
         IDebtPaymentService _debtPayService, 
         IFlatDebtsQueryService _flatDebtsQueryService) : ControllerBase
     {
-        [Route("GetDebts")]
-        [HttpGet]
+        [HttpGet("GetDebts")]
         public async Task<IActionResult> GetFlatDebts(string paymentNumber)
         {
             var debts = await _flatDebtsQueryService.GetFlatDebtsAsync(paymentNumber);
 
-            if (debts == null)
-                return NotFound();
-            return Ok(debts);
+            return debts == null ? NotFound() : Ok(debts);
         }
 
-        [Route("PayDebt")]
-        [HttpDelete]
+        [HttpDelete("PayDebt")]
         public async Task<IActionResult> RemoveDebt(int debtId)
         {
             var paidDebt = await _debtPayService.PayDebtAsync(debtId);
 
-            if (paidDebt == null)
-                return NotFound();
-
-            return Ok(paidDebt);
+            return paidDebt == null ? NotFound() : Ok(paidDebt);
         }
     }
 }

@@ -9,12 +9,7 @@ namespace CommunalServices.Domain.ContractsRealization
         {
             var flat = await _repository.GetFlatByPaymentNumberAsync(paymentNumber);
 
-            if (flat == null)
-                return null;
-
-            var flatDebts = await _repository.GetFlatDebtsAsync(flat);
-
-            return flatDebts;
+            return flat == null ? null : await _repository.GetFlatDebtsAsync(flat);
         }
     }
 }

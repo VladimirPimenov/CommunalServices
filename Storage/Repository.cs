@@ -42,17 +42,14 @@ namespace CommunalServices.Storage
         {
             var flatsId = await GetAbonentFlatsIdAsync(abonent);
 
-            var flats = await _context.Flat.Where(flat => flatsId.Contains(flat.PaymentNumber)).ToListAsync();
-
-            return flats;
+            return await _context.Flat.Where(flat => flatsId.Contains(flat.PaymentNumber)).ToListAsync();
         }
         private async Task<List<string>> GetAbonentFlatsIdAsync(Abonent abonent)
         {
-            var flatsId = await _context.AbonentFlat
-                                                .Where(a => a.AbonentId == abonent.AbonentId)
-                                                .Select(a => a.FlatId)
-                                                .ToListAsync();
-            return flatsId;
+            return await _context.AbonentFlat
+                                        .Where(a => a.AbonentId == abonent.AbonentId)
+                                        .Select(a => a.FlatId)
+                                        .ToListAsync();
         }
 
         public async Task<Flat> GetFlatByPaymentNumberAsync(string paymentNumber)
@@ -68,6 +65,7 @@ namespace CommunalServices.Storage
         {
             return await _context.Debt.FindAsync(debtId);
         }
+
         public async Task<int> RemoveDebtAsync(int debtId)
         {
             var debt = await _context.Debt.FindAsync(debtId);
