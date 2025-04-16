@@ -14,26 +14,6 @@ namespace CommunalServices.Domain.ContractsRealization
             var registeredAbonent = await _repository.AddAbonentAsync(ConvertToAbonent(newAbonent));
             return registeredAbonent;
         }
-        private async Task<bool> IsAbonentExistsAsync(AbonentDTO abonentDto)
-        {
-            var abonentByLogin = await _repository.GetAbonentByLoginAsync(abonentDto.Login);
-            var abonentByEmail = await _repository.GetAbonentByEmailAsync(abonentDto.Email);
-
-            if (abonentByLogin == null && abonentByEmail == null)
-                return false;
-            return true;
-        }
-        private Abonent ConvertToAbonent(AbonentDTO abonentDto)
-        {
-            return new Abonent
-            {
-                Login = abonentDto.Login,
-                Password = abonentDto.Password,
-                Email = abonentDto.Email,
-                FirstName = abonentDto.FirstName,
-                LastName = abonentDto.LastName
-            };
-        }
 
         public async Task<Abonent> LoginAsync(string login, string password)
         {
@@ -60,6 +40,27 @@ namespace CommunalServices.Domain.ContractsRealization
             await _repository.UpdateAbonentAsync(abonent);
 
             return abonent;
+        }
+
+        private async Task<bool> IsAbonentExistsAsync(AbonentDTO abonentDto)
+        {
+            var abonentByLogin = await _repository.GetAbonentByLoginAsync(abonentDto.Login);
+            var abonentByEmail = await _repository.GetAbonentByEmailAsync(abonentDto.Email);
+
+            if (abonentByLogin == null && abonentByEmail == null)
+                return false;
+            return true;
+        }
+        private Abonent ConvertToAbonent(AbonentDTO abonentDto)
+        {
+            return new Abonent
+            {
+                Login = abonentDto.Login,
+                Password = abonentDto.Password,
+                Email = abonentDto.Email,
+                FirstName = abonentDto.FirstName,
+                LastName = abonentDto.LastName
+            };
         }
     }
 }

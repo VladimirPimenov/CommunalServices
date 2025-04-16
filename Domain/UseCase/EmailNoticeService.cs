@@ -18,6 +18,12 @@ namespace CommunalServices.Domain.ContractsRealization
 
             smtp.Send(passwordMessage);
         }
+
+        public void SendPaymentReceipt(Abonent abonent, PaymentAccount paymentAccount)
+        {
+            throw new NotImplementedException();
+        }
+
         private MailMessage CreatePasswordNoticeMessage(Abonent abonent)
         {
             MailAddress senderEmail = new MailAddress("company@email.com");
@@ -28,11 +34,6 @@ namespace CommunalServices.Domain.ContractsRealization
             passwordNotice.Body = $"{abonent.FirstName}, ваш новый пароль от учётной записи: {abonent.Password}.";
 
             return passwordNotice;
-        }
-
-        public void SendPaymentReceipt(Abonent abonent, PaymentAccount paymentAccount)
-        {
-            throw new NotImplementedException();
         }
     }
 }
