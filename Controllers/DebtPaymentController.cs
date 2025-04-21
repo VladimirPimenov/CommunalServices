@@ -3,35 +3,26 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CommunalServices.Controllers
 {
-    [Route("Payment")]
-    [ApiController]
+
     /// <summary>
     /// Контроллер для управления платежами по задолженностям.
-    /// Этот контроллер предоставляет методы для получения списка задолженностей и оплаты долгов.
+    /// Этот контроллер предоставляет функциональность для оплаты задолженностей абонентов.
     /// </summary>
-    public class DebtPaymentController(
-        IDebtPaymentService _debtPayService, 
-        IFlatDebtsQueryService _flatDebtsQueryService) : ControllerBase
+    [Route("Payment")]
+    [ApiController]
+    public class DebtPaymentController(IDebtPaymentService _debtPayService) : ControllerBase
     {
-        /// <summary>
-        /// Получает список задолженностей для указанной квартиры.
-        /// </summary>
-        /// <param name="paymentNumber">Номер лицевого счета квартиры.</param>
-        /// <returns>Возвращает статус 200 (Ok) с задолженностями, если они найдены; иначе 404 (NotFound).</returns>
-        [HttpGet("GetDebts")]
-        public async Task<IActionResult> GetFlatDebts(string paymentNumber)
-        {
-            var debts = await _flatDebtsQueryService.GetFlatDebtsAsync(paymentNumber);
-            return debts == null ? NotFound() : Ok(debts);
-        }
-
         /// <summary>
         /// Выполняет оплату задолженности по её идентификатору.
         /// </summary>
-        /// <param name="debtId">Идентификатор задолженности.</param>
-        /// <returns>Возвращает статус 200 (Ok) с информацией о погашенной задолженности, если оплата успешна; иначе 404 (NotFound).</returns>
+        /// <param name="debtId">Идентификатор задолженности, которую необходимо оплатить.</param>
+        /// <returns>
+        /// Возвращает:
+        /// - 200 (Ok) с информацией о погашенной задолженности в случае успешной оплаты
+        /// - 404 (NotFound) если задолженность не найдена или произошла ошибка при оплате
+        /// </returns>
         [HttpDelete("PayDebt")]
-        public async Task<IActionResult> RemoveDebt(int debtId)
+        public async Task<IActionResult> PayDebt(int debtId)
         {
             var paidDebt = await _debtPayService.PayDebtAsync(debtId);
             return paidDebt == null ? NotFound() : Ok(paidDebt);
