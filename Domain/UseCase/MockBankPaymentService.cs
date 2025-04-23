@@ -5,6 +5,9 @@ namespace CommunalServices.Domain.ContractsRealization
 {
     public class MockBankPaymentService:IBankPaymentService
     {
-        public async Task<bool> ProcessPaymentOperationAsync(PaymentAccount payAccount) { return true; }
+        public async Task<bool> ProcessPaymentOperationAsync(PaymentAccount payAccount) 
+        { 
+            return true; 
+        }
     }
 }

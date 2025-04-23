@@ -8,7 +8,6 @@ namespace CommunalServices.Domain.ContractsRealization
         public async Task<List<Debt>> GetFlatDebtsAsync(string paymentNumber)
         {
             var flat = await _repository.GetFlatByPaymentNumberAsync(paymentNumber);
-
             return flat == null ? null : await _repository.GetFlatDebtsAsync(flat);
         }
     }

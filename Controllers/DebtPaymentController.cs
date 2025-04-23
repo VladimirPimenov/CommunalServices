@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CommunalServices.Controllers
 {
-
     /// <summary>
     /// Контроллер для управления платежами по задолженностям.
     /// Этот контроллер предоставляет функциональность для оплаты задолженностей абонентов.
