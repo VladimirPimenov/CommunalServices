@@ -4,12 +4,12 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CommunalServices.Controllers
 {
-    [Route("[controller]")]
-    [ApiController]
     /// <summary>
     /// Контроллер для аутентификации абонентов.
     /// Этот контроллер предоставляет методы для входа, регистрации и изменения пароля абонентов.
     /// </summary>
+    [Route("[controller]")]
+    [ApiController]
     public class AuthentificationController(IAbonentAuthenticationService _abonentAuthService) : ControllerBase
     {
         /// <summary>
@@ -17,7 +17,11 @@ namespace CommunalServices.Controllers
         /// </summary>
         /// <param name="login">Логин абонента.</param>
         /// <param name="password">Пароль абонента.</param>
-        /// <returns>Возвращает статус 200 (Ok) с данными абонента, если вход успешен; иначе 404 (NotFound).</returns>
+        /// <returns>
+        /// Возвращает:
+        /// - 200 (Ok) с данными абонента, если вход успешен
+        /// - 404 (NotFound) если абонент не найден или пароль неверен
+        /// </returns>
         [HttpGet("Login")]
         public async Task<IActionResult> LoginAsync(string login, string password)
         {
@@ -29,7 +33,11 @@ namespace CommunalServices.Controllers
         /// Выполняет регистрацию нового абонента.
         /// </summary>
         /// <param name="newAbonent">Данные нового абонента.</param>
-        /// <returns>Возвращает статус 200 (Ok) с зарегистрированным абонентом, если регистрация успешна; иначе 400 (BadRequest).</returns>
+        /// <returns>
+        /// Возвращает:
+        /// - 200 (Ok) с зарегистрированным абонентом, если регистрация успешна
+        /// - 400 (BadRequest) если произошла ошибка при регистрации
+        /// </returns>
         [HttpPost("Register")]
         public async Task<IActionResult> RegisterAsync(AbonentDTO newAbonent)
         {
@@ -41,7 +49,11 @@ namespace CommunalServices.Controllers
         /// Изменяет пароль абонента.
         /// </summary>
         /// <param name="updatedAbonent">Обновленные данные абонента с новым паролем.</param>
-        /// <returns>Возвращает статус 200 (Ok) с обновленным абонентом, если изменение пароля успешно; иначе 404 (NotFound).</returns>
+        /// <returns>
+        /// Возвращает:
+        /// - 200 (Ok) с обновленным абонентом, если изменение пароля успешно
+        /// - 404 (NotFound) если абонент не найден
+        /// </returns>
         [HttpPut("ChangePassword")]
         public async Task<IActionResult> ChangePassword(AbonentDTO updatedAbonent)
         {
