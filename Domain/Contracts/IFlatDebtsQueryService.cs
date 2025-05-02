@@ -13,6 +13,6 @@ namespace CommunalServices.Domain.Contracts
         /// </summary>
         /// <param name="paymentNumber">Номер лицевого счета квартиры, для которой нужно получить задолженности.</param>
         /// <returns>Список задолженностей для указанной квартиры.</returns>
-        Task<List<Debt>> GetFlatDebtsAsync(string paymentNumber);
+        public Task<List<Debt>> GetFlatDebtsAsync(string paymentNumber);
     }
 }

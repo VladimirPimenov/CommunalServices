@@ -12,13 +12,13 @@ namespace CommunalServices.Domain.Contracts
         /// Отправляет новый пароль абоненту по электронной почте.
         /// </summary>
         /// <param name="abonent">Абонент, которому нужно отправить новый пароль.</param>
-        void SendNewAbonentPassword(Abonent abonent);
+        public void SendNewAbonentPassword(Abonent abonent);
 
         /// <summary>
         /// Отправляет квитанцию об оплате абоненту по электронной почте.
         /// </summary>
         /// <param name="abonent">Абонент, которому нужно отправить квитанцию.</param>
         /// <param name="paymentAccount">Счет оплаты, содержащий информацию о платеже.</param>
-        void SendPaymentReceipt(Abonent abonent, PaymentAccount paymentAccount);
+        public void SendPaymentReceipt(Abonent abonent, PaymentAccount paymentAccount);
     }
 }

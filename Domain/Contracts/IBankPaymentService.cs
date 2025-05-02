@@ -13,6 +13,6 @@ namespace CommunalServices.Domain.Contracts
         /// </summary>
         /// <param name="payAccount">Объект счета оплаты, который нужно обработать.</param>
         /// <returns>Возвращает true, если операция прошла успешно; иначе false.</returns>
-        Task<bool> ProcessPaymentOperationAsync(PaymentAccount payAccount);
+        public Task<bool> ProcessPaymentOperationAsync(PaymentAccount payAccount);
     }
 }
