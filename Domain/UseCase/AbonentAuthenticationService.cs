@@ -51,6 +51,7 @@ namespace CommunalServices.Domain.ContractsRealization
                 return false;
             return true;
         }
+
         private Abonent ConvertToAbonent(AbonentDTO abonentDto)
         {
             return new Abonent

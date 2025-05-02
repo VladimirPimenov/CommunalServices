@@ -9,7 +9,7 @@ namespace CommunalServices.Domain.ContractsRealization
     {
         public void SendNewAbonentPassword(Abonent abonent)
         {
-            SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
+            SmtpClient smtp = new SmtpClient("smtp.gmail.com");
 
             smtp.Credentials = new NetworkCredential("company@email.com", "password");
             smtp.EnableSsl = true;
