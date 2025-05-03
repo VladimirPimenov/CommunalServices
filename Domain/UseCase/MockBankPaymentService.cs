@@ -1,7 +1,7 @@
 ﻿using CommunalServices.Domain.Contracts;
 using CommunalServices.Domain.Entities;
 
-namespace CommunalServices.Domain.ContractsRealization
+namespace CommunalServices.Domain.UseCase
 {
     public class MockBankPaymentService:IBankPaymentService
     {

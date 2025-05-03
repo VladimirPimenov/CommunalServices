@@ -1,6 +1,6 @@
 using CommunalServices.Domain;
 using CommunalServices.Domain.Contracts;
-using CommunalServices.Domain.ContractsRealization;
+using CommunalServices.Domain.UseCase;
 using CommunalServices.Storage;
 using Microsoft.EntityFrameworkCore;
 

@@ -2,7 +2,7 @@
 using CommunalServices.Domain.Entities;
 using CommunalServices.Domain.DTO;
 
-namespace CommunalServices.Domain.ContractsRealization
+namespace CommunalServices.Domain.UseCase
 {
     public class AbonentAuthenticationService(IRepository _repository) : IAbonentAuthenticationService
     {

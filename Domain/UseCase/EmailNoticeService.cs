@@ -3,7 +3,7 @@ using CommunalServices.Domain.Entities;
 using System.Net;
 using System.Net.Mail;
 
-namespace CommunalServices.Domain.ContractsRealization
+namespace CommunalServices.Domain.UseCase
 {
     public class EmailNoticeService: IEmailNoticeService
     {
