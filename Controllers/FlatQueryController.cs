@@ -1,5 +1,7 @@
-﻿using CommunalServices.Domain.Contracts;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+
+using CommunalServices.Domain.Contracts;
+using CommunalServices.Domain.Entities;
 
 namespace CommunalServices.Controllers
 {
@@ -9,7 +11,7 @@ namespace CommunalServices.Controllers
     /// </summary>
     [Route("Flats")]
     [ApiController]
-    public class FlatQueryController(IAbonentFlatsQueryService _abonentFlatsQueryService) : ControllerBase
+    public class FlatQueryController(IAbonentFlatsQueryService abonentFlatsQueryService) : ControllerBase
     {
         /// <summary>
         /// Получает список квартир, принадлежащих абоненту.
@@ -21,9 +23,11 @@ namespace CommunalServices.Controllers
         /// - 404 (NotFound) если квартиры не найдены
         /// </returns>
         [HttpGet("GetAbonentFlats")]
+        [ProducesResponseType<List<Flat>>(200)]
+        [ProducesResponseType(404)]
         public async Task<IActionResult> GetAbonentFlats(string abonentLogin)
         {
-            var flats = _abonentFlatsQueryService.GetAbonentFlatsAsync(abonentLogin);
+            var flats = await abonentFlatsQueryService.GetAbonentFlatsAsync(abonentLogin);
             return flats == null ? NotFound() : Ok(flats);
         }
     }

@@ -1,5 +1,7 @@
-﻿using CommunalServices.Domain.Contracts;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+
+using CommunalServices.Domain.Contracts;
+using CommunalServices.Domain.Entities;
 
 namespace CommunalServices.Controllers
 {
@@ -7,9 +9,9 @@ namespace CommunalServices.Controllers
     /// Контроллер для управления платежами по задолженностям.
     /// Этот контроллер предоставляет функциональность для оплаты задолженностей абонентов.
     /// </summary>
-    [Route("Payment")]
+    [Route("debt-payment")]
     [ApiController]
-    public class DebtPaymentController(IDebtPaymentService _debtPayService) : ControllerBase
+    public class DebtPaymentController(IDebtPaymentService debtPayService) : ControllerBase
     {
         /// <summary>
         /// Выполняет оплату задолженности по её идентификатору.
@@ -20,10 +22,12 @@ namespace CommunalServices.Controllers
         /// - 200 (Ok) с информацией о погашенной задолженности в случае успешной оплаты
         /// - 404 (NotFound) если задолженность не найдена или произошла ошибка при оплате
         /// </returns>
-        [HttpDelete("PayDebt")]
+        [HttpDelete("{debtId:int}")]
+        [ProducesResponseType<Debt>(200)]
+        [ProducesResponseType(404)]
         public async Task<IActionResult> PayDebt(int debtId)
         {
-            var paidDebt = await _debtPayService.PayDebtAsync(debtId);
+            var paidDebt = await debtPayService.PayDebtAsync(debtId);
             return paidDebt == null ? NotFound() : Ok(paidDebt);
         }
     }
