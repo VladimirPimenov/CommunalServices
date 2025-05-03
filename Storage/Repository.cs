@@ -14,6 +14,12 @@ namespace CommunalServices.Storage
         {
             return await _context.Abonent.FirstOrDefaultAsync(abonent => abonent.Email == email);
         }
+        
+        public Abonent GetAbonentById(int abonentId)
+        {
+            return _context.Abonent.Find(abonentId);
+        }
+        
         public async Task<Abonent> AddAbonentAsync(Abonent newAbonent)
         {
             await _context.Abonent.AddAsync(newAbonent);
@@ -83,6 +89,12 @@ namespace CommunalServices.Storage
 
             return paymentAccount;
         }
+        
+        public PaymentAccount GetPaymentAccountById(int paymentId)
+        {
+            return _context.PaymentAccount.Find(paymentId);
+        }
+        
         public async Task<int> RemovePaymentAccountAsync(int paymentId)
         {
             var paymentAccount = await _context.PaymentAccount.FindAsync(paymentId);

@@ -23,6 +23,13 @@ namespace CommunalServices.Domain
         Task<Abonent> GetAbonentByEmailAsync(string email);
 
         /// <summary>
+        /// Получает абонента по идентификатору.
+        /// </summary>
+        /// <param name="abonentId">Идентификатор абонента.</param>
+        /// <returns>Абонент или null, если не найден.</returns>
+        Abonent GetAbonentById(int abonentId);
+
+        /// <summary>
         /// Добавляет нового абонента.
         /// </summary>
         /// <param name="newAbonent">Данные нового абонента.</param>
@@ -84,6 +91,13 @@ namespace CommunalServices.Domain
         /// <param name="paymentAccount">Данные нового счета оплаты.</param>
         /// <returns>Созданный счет оплаты.</returns>
         Task<PaymentAccount> AddPaymentAccountAsync(PaymentAccount paymentAccount);
+
+        /// <summary>
+        /// Получает счет оплаты по идентификатору.
+        /// </summary>
+        /// <param name="paymentId">Идентификатор счета оплаты.</param>
+        /// <returns>Счет оплаты или null, если не найден.</returns>
+        PaymentAccount GetPaymentAccountById(int paymentId);
 
         /// <summary>
         /// Удаляет счет оплаты по идентификатору.
