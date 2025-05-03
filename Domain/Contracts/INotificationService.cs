@@ -6,13 +6,13 @@ namespace CommunalServices.Domain.Contracts
     /// Интерфейс для работы с уведомлениями по электронной почте.
     /// Этот интерфейс предоставляет методы для отправки уведомлений абонентам.
     /// </summary>
-    public interface IEmailNoticeService
+    public interface INotificationService
     {
         /// <summary>
         /// Отправляет новый пароль абоненту по электронной почте.
         /// </summary>
         /// <param name="abonent">Абонент, которому нужно отправить новый пароль.</param>
-        public void SendNewAbonentPassword(Abonent abonent);
+        public void SendNewAbonentPasswordToEmail(Abonent abonent);
 
         /// <summary>
         /// Отправляет квитанцию об оплате абоненту по электронной почте.
