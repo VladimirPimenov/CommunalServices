@@ -27,7 +27,7 @@ namespace CommunalServices.Domain
         /// </summary>
         /// <param name="abonentId">Идентификатор абонента.</param>
         /// <returns>Абонент или null, если не найден.</returns>
-        Abonent GetAbonentById(int abonentId);
+        Task<Abonent> GetAbonentByIdAsync(int abonentId);
 
         /// <summary>
         /// Добавляет нового абонента.
@@ -97,7 +97,7 @@ namespace CommunalServices.Domain
         /// </summary>
         /// <param name="paymentId">Идентификатор счета оплаты.</param>
         /// <returns>Счет оплаты или null, если не найден.</returns>
-        PaymentAccount GetPaymentAccountById(int paymentId);
+        Task<PaymentAccount> GetPaymentAccountByIdAsync(int paymentId);
 
         /// <summary>
         /// Удаляет счет оплаты по идентификатору.

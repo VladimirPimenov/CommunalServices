@@ -15,9 +15,9 @@ namespace CommunalServices.Storage
             return await _context.Abonent.FirstOrDefaultAsync(abonent => abonent.Email == email);
         }
         
-        public Abonent GetAbonentById(int abonentId)
+        public async Task<Abonent> GetAbonentById(int abonentId)
         {
-            return _context.Abonent.Find(abonentId);
+            return await _context.Abonent.FindAsync(abonentId);
         }
         
         public async Task<Abonent> AddAbonentAsync(Abonent newAbonent)
