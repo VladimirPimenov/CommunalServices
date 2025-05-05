@@ -4,7 +4,9 @@ using CommunalServices.Domain.DTO;
 
 namespace CommunalServices.Domain.UseCase
 {
-    public class AbonentAuthenticationService(IRepository _repository) : IAbonentAuthenticationService
+    public class AbonentAuthenticationService(
+        IRepository _repository,
+        INotificationService notificationService) : IAbonentAuthenticationService
     {
         public async Task<Abonent> RegisterAsync(AbonentDTO newAbonent)
         {
@@ -38,6 +40,8 @@ namespace CommunalServices.Domain.UseCase
             abonent.Password = updatedAbonent.Password;
 
             await _repository.UpdateAbonentAsync(abonent);
+
+            notificationService.SendNewAbonentPasswordToEmail(abonent);
 
             return abonent;
         }
