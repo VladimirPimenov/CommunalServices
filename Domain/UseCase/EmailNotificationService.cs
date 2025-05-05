@@ -1,22 +1,24 @@
-﻿using CommunalServices.Domain.Contracts;
-using CommunalServices.Domain.Entities;
-using System.Net;
+﻿using System.Net;
 using System.Net.Mail;
+
+using CommunalServices.Domain.Contracts;
+using CommunalServices.Domain.Entities;
 
 namespace CommunalServices.Domain.UseCase
 {
-    public class EmailNoticeService: IEmailNoticeService
+    public class EmailNotificationService: INotificationService
     {
-        public void SendNewAbonentPassword(Abonent abonent)
+        public void SendNewAbonentPasswordToEmail(Abonent abonent)
         {
-            SmtpClient smtp = new SmtpClient("smtp.gmail.com");
+            var passwordMessage = CreatePasswordNoticeMessage(abonent);
 
-            smtp.Credentials = new NetworkCredential("company@email.com", "password");
-            smtp.EnableSsl = true;
+            var smtpClient = new SmtpClient("smtp.gmail.com")
+            {
+                Credentials = new NetworkCredential("company@email.com", "password"),
+                EnableSsl = true
+            };
 
-            MailMessage passwordMessage = CreatePasswordNoticeMessage(abonent);
-
-            smtp.Send(passwordMessage);
+            smtpClient.Send(passwordMessage);
         }
 
         public void SendPaymentReceipt(Abonent abonent, PaymentAccount paymentAccount)
@@ -24,16 +26,16 @@ namespace CommunalServices.Domain.UseCase
             throw new NotImplementedException();
         }
 
-        private MailMessage CreatePasswordNoticeMessage(Abonent abonent)
+        private static MailMessage CreatePasswordNoticeMessage(Abonent abonent)
         {
-            MailAddress senderEmail = new MailAddress("company@email.com");
-            MailAddress recepientEmail = new MailAddress(abonent.Email);
+            var senderEmail = new MailAddress("company@email.com");
+            var recepientEmail = new MailAddress(abonent.Email);
 
-            MailMessage passwordNotice = new MailMessage(senderEmail, recepientEmail);
-            passwordNotice.Subject = "Новый пароль CommunalServices";
-            passwordNotice.Body = $"{abonent.FirstName}, ваш новый пароль от учётной записи: {abonent.Password}.";
-
-            return passwordNotice;
+            return new MailMessage(senderEmail, recepientEmail)
+            {
+                Subject = "Новый пароль CommunalServices",
+                Body = $"{abonent.FirstName}, ваш новый пароль от учётной записи: {abonent.Password}."
+            };
         }
     }
 }
