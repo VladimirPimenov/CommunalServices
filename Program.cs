@@ -1,8 +1,9 @@
-using CommunalServices.Domain;
+using Microsoft.EntityFrameworkCore;
+
+using CommunalServices.Domain.Repositories;
+using CommunalServices.Storage;
 using CommunalServices.Domain.Contracts;
 using CommunalServices.Domain.UseCase;
-using CommunalServices.Storage;
-using Microsoft.EntityFrameworkCore;
 
 namespace CommunalServices
 {
@@ -19,7 +20,12 @@ namespace CommunalServices
 			builder.Services.AddDbContext<CommunalServicesPaymentContext>(options =>
 			options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-			builder.Services.AddTransient<IRepository, Repository>();
+			builder.Services.AddTransient<IAuthentificationRepository, AuthentificationRepository>();
+			builder.Services.AddTransient<IFlatRepository, FlatRepository>();
+			builder.Services.AddTransient<IDebtListRepository, DebtListRepository>();
+			builder.Services.AddTransient<IDebtPaymentRepository, DebtPaymentRepository>();
+			builder.Services.AddTransient<IReceiptRegistrationRepository, ReceiptRegistrationRepository>();
+
 			builder.Services.AddTransient<IBankPaymentService, MockBankPaymentService>();
 			builder.Services.AddTransient<IAbonentAuthenticationService, AbonentAuthenticationService>();
 			builder.Services.AddTransient<IDebtPaymentService, DebtPaymentService>();

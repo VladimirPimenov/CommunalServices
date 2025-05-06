@@ -1,15 +1,15 @@
 ﻿using CommunalServices.Domain.Contracts;
+using CommunalServices.Domain.Repositories;
 using CommunalServices.Domain.Entities;
-using System.Text.Json;
 
 namespace CommunalServices.Domain.UseCase
 {
-    public class AtolReceiptRegistrationService(IRepository _repository) : IReceiptRegistrationService
+    public class AtolReceiptRegistrationService(IReceiptRegistrationRepository receiptRepository) : IReceiptRegistrationService
     {
         public async Task<bool> RegisterReceiptAsync(int abonentId, int paymentAccountId)
         {
-            var abonent = await _repository.GetAbonentByIdAsync(abonentId);
-            var paymentAccount = await _repository.GetPaymentAccountByIdAsync(paymentAccountId);
+            var abonent = await receiptRepository.GetAbonentByIdAsync(abonentId);
+            var paymentAccount = await receiptRepository.GetPaymentAccountByIdAsync(paymentAccountId);
 
             if (abonent == null || paymentAccount == null)
                 return false;

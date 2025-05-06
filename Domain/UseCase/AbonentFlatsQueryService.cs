@@ -1,14 +1,17 @@
 ﻿using CommunalServices.Domain.Contracts;
+using CommunalServices.Domain.Repositories;
 using CommunalServices.Domain.Entities;
 
 namespace CommunalServices.Domain.UseCase
 {
-    public class AbonentFlatsQueryService(IRepository _repository): IAbonentFlatsQueryService
+    public class AbonentFlatsQueryService(
+        IFlatRepository flatRepository,
+        IAuthentificationRepository authRepository): IAbonentFlatsQueryService
     {
         public async Task<List<Flat>> GetAbonentFlatsAsync(string login)
         {
-            var abonent = await _repository.GetAbonentByLoginAsync(login);
-            return abonent == null ? null : await _repository.GetAbonentFlatsAsync(abonent);
+            var abonent = await authRepository.GetAbonentByLoginAsync(login);
+            return abonent == null ? null : await flatRepository.GetAbonentFlatsAsync(abonent);
         }
     }
 }
