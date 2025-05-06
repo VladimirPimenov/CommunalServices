@@ -9,7 +9,7 @@ namespace CommunalServices.Controllers
     /// Контроллер для получения информации о квартирах абонентов.
     /// Этот контроллер предоставляет методы для получения списка квартир, принадлежащих абоненту.
     /// </summary>
-    [Route("Flats")]
+    [Route("flats")]
     [ApiController]
     public class FlatQueryController(IAbonentFlatsQueryService abonentFlatsQueryService) : ControllerBase
     {
@@ -22,7 +22,7 @@ namespace CommunalServices.Controllers
         /// - 200 (Ok) со списком квартир абонента
         /// - 404 (NotFound) если квартиры не найдены
         /// </returns>
-        [HttpGet("GetAbonentFlats")]
+        [HttpGet]
         [ProducesResponseType<List<Flat>>(200)]
         [ProducesResponseType(404)]
         public async Task<IActionResult> GetAbonentFlats(string abonentLogin)

@@ -9,7 +9,7 @@ namespace CommunalServices.Controllers
     /// Контроллер для получения информации о задолженностях.
     /// Этот контроллер предоставляет методы для получения списка задолженностей по квартирам.
     /// </summary>
-    [Route("debt")]
+    [Route("debts")]
     [ApiController]
     public class DebtQueryController(IFlatDebtsQueryService flatDebtsQueryService) : ControllerBase
     {

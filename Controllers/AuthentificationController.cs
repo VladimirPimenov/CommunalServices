@@ -10,7 +10,7 @@ namespace CommunalServices.Controllers
     /// Контроллер для аутентификации абонентов.
     /// Этот контроллер предоставляет методы для входа, регистрации и изменения пароля абонентов.
     /// </summary>
-    [Route("[controller]")]
+    [Route("abonent")]
     [ApiController]
     public class AuthentificationController(IAbonentAuthenticationService abonentAuthService) : ControllerBase
     {
@@ -24,7 +24,7 @@ namespace CommunalServices.Controllers
         /// - 200 (Ok) с данными абонента, если вход успешен
         /// - 404 (NotFound) если абонент не найден или пароль неверен
         /// </returns>
-        [HttpGet("Login")]
+        [HttpGet]
         [ProducesResponseType<Abonent>(200)]
         [ProducesResponseType(404)]
         public async Task<IActionResult> LoginAsync(string login, string password)
@@ -42,7 +42,7 @@ namespace CommunalServices.Controllers
         /// - 200 (Ok) с зарегистрированным абонентом, если регистрация успешна
         /// - 400 (BadRequest) если произошла ошибка при регистрации
         /// </returns>
-        [HttpPost("Register")]
+        [HttpPost]
         [ProducesResponseType<Abonent>(200)]
         [ProducesResponseType(404)]
         public async Task<IActionResult> RegisterAsync(AbonentDTO newAbonent)
@@ -60,7 +60,7 @@ namespace CommunalServices.Controllers
         /// - 200 (Ok) с обновленным абонентом, если изменение пароля успешно
         /// - 404 (NotFound) если абонент не найден
         /// </returns>
-        [HttpPut("ChangePassword")]
+        [HttpPut]
         [ProducesResponseType<Abonent>(200)]
         [ProducesResponseType(404)]
         public async Task<IActionResult> ChangePassword(AbonentDTO updatedAbonent)
