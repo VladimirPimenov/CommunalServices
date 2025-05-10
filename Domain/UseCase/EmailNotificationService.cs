@@ -6,15 +6,17 @@ using CommunalServices.Domain.Entities;
 
 namespace CommunalServices.Domain.UseCase
 {
-    public class EmailNotificationService: INotificationService
+    public class EmailNotificationService(IConfiguration config): INotificationService
     {
+        private readonly string companyEmail = config.GetValue<string>("CompanyEmail");
+
         public void SendNewAbonentPasswordToEmail(Abonent abonent)
         {
             var passwordMessage = CreatePasswordNoticeMessage(abonent);
 
             var smtpClient = new SmtpClient("smtp.gmail.com")
             {
-                Credentials = new NetworkCredential("company@email.com", "password"),
+                Credentials = new NetworkCredential(companyEmail, "password"),
                 EnableSsl = true
             };
 
@@ -26,9 +28,9 @@ namespace CommunalServices.Domain.UseCase
             throw new NotImplementedException();
         }
 
-        private static MailMessage CreatePasswordNoticeMessage(Abonent abonent)
+        private MailMessage CreatePasswordNoticeMessage(Abonent abonent)
         {
-            var senderEmail = new MailAddress("company@email.com");
+            var senderEmail = new MailAddress(companyEmail);
             var recepientEmail = new MailAddress(abonent.Email);
 
             return new MailMessage(senderEmail, recepientEmail)

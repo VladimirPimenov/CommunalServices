@@ -4,8 +4,12 @@ using CommunalServices.Domain.Entities;
 
 namespace CommunalServices.Domain.UseCase
 {
-    public class AtolReceiptRegistrationService(IReceiptRegistrationRepository receiptRepository) : IReceiptRegistrationService
+    public class AtolReceiptRegistrationService(
+        IConfiguration config,
+        IReceiptRegistrationRepository receiptRepository) : IReceiptRegistrationService
     {
+        private readonly string atolServiceLink = config.GetValue<string>("AtolServiceLink");
+
         public async Task<bool> RegisterReceiptAsync(int abonentId, int paymentAccountId)
         {
             var abonent = await receiptRepository.GetAbonentByIdAsync(abonentId);
@@ -33,7 +37,7 @@ namespace CommunalServices.Domain.UseCase
         {
             HttpClient httpClient = new HttpClient();
 
-            var httpResponce = await httpClient.PostAsync("https://online.atol.ru/possystem/v5/sell", receipt);
+            var httpResponce = await httpClient.PostAsync(atolServiceLink, receipt);
 
             return httpResponce.IsSuccessStatusCode; 
         }
