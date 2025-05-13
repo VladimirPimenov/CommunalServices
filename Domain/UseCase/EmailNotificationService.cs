@@ -9,6 +9,7 @@ namespace CommunalServices.Domain.UseCase
     public class EmailNotificationService(IConfiguration config): INotificationService
     {
         private readonly string companyEmail = config.GetValue<string>("CompanyEmail");
+        private readonly string companyEmailPassword = config.GetValue<string>("CompanyEmailPassword");
 
         public void SendNewAbonentPasswordToEmail(Abonent abonent)
         {
@@ -16,7 +17,7 @@ namespace CommunalServices.Domain.UseCase
 
             var smtpClient = new SmtpClient("smtp.gmail.com")
             {
-                Credentials = new NetworkCredential(companyEmail, "password"),
+                Credentials = new NetworkCredential(companyEmail, companyEmailPassword),
                 EnableSsl = true
             };
 
