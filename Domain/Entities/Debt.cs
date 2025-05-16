@@ -10,12 +10,13 @@ namespace CommunalServices.Domain.Entities
         /// <summary>
         /// Уникальный идентификатор задолженности.
         /// </summary>
+        [Key]
         public int DebtId { get; set; }
 
         /// <summary>
-        /// Номер лицевого счета квартиры.
+        /// Идентификатор квартиры.
         /// </summary>
-        public string PaymentNumber { get; set; }
+        public int FlatId { get; set; }
 
         /// <summary>
         /// Тип ресурса, за который начислена задолженность.

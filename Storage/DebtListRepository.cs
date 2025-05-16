@@ -9,7 +9,7 @@ namespace CommunalServices.Storage
     {
         public async Task<List<Debt>> GetFlatDebtsAsync(Flat flat)
         {
-            return await context.Debt.Where(debt => debt.PaymentNumber == flat.PaymentNumber).ToListAsync();
+            return await context.Debt.Where(debt => debt.FlatId == flat.FlatId).ToListAsync();
         }
     }
 }

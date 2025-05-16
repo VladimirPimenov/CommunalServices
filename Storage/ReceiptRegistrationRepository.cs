@@ -1,6 +1,5 @@
 ﻿using CommunalServices.Domain.Entities;
 using CommunalServices.Domain.Repositories;
-using Microsoft.EntityFrameworkCore;
 
 namespace CommunalServices.Storage
 {

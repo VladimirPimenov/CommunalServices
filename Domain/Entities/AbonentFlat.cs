@@ -22,6 +22,6 @@ namespace CommunalServices.Domain.Entities
         /// <summary>
         /// Идентификатор квартиры, принадлежащей абоненту.
         /// </summary>
-        public string FlatId { get; set; }
+        public int FlatId { get; set; }
     }
 }
