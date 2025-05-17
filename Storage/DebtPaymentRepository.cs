@@ -22,7 +22,7 @@ namespace CommunalServices.Storage
 
         public async Task<PaymentAccount> AddPaymentAccountAsync(PaymentAccount paymentAccount)
         {
-            await context.PaymentAccount.AddAsync(paymentAccount);
+            context.PaymentAccount.Add(paymentAccount);
             await context.SaveChangesAsync();
 
             return paymentAccount;

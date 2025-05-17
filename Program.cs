@@ -20,19 +20,19 @@ namespace CommunalServices
 			builder.Services.AddDbContext<CommunalServicesPaymentContext>(options =>
 			options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-			builder.Services.AddTransient<IAuthentificationRepository, AuthentificationRepository>();
-			builder.Services.AddTransient<IFlatRepository, FlatRepository>();
-			builder.Services.AddTransient<IDebtListRepository, DebtListRepository>();
-			builder.Services.AddTransient<IDebtPaymentRepository, DebtPaymentRepository>();
-			builder.Services.AddTransient<IReceiptRegistrationRepository, ReceiptRegistrationRepository>();
+			builder.Services.AddScoped<IAuthentificationRepository, AuthentificationRepository>();
+			builder.Services.AddScoped<IFlatRepository, FlatRepository>();
+			builder.Services.AddScoped<IDebtListRepository, DebtListRepository>();
+			builder.Services.AddScoped<IDebtPaymentRepository, DebtPaymentRepository>();
+			builder.Services.AddScoped<IReceiptRegistrationRepository, ReceiptRegistrationRepository>();
 
-			builder.Services.AddTransient<IBankPaymentService, MockBankPaymentService>();
-			builder.Services.AddTransient<IAbonentAuthenticationService, AbonentAuthenticationService>();
-			builder.Services.AddTransient<IDebtPaymentService, DebtPaymentService>();
-			builder.Services.AddTransient<IFlatDebtsQueryService, FlatDebtsQueryService>();
-			builder.Services.AddTransient<IAbonentFlatsQueryService, AbonentFlatsQueryService>();
-			builder.Services.AddTransient<INotificationService, EmailNotificationService>();
-			builder.Services.AddTransient<IReceiptRegistrationService, AtolReceiptRegistrationService>();
+			builder.Services.AddScoped<IBankPaymentService, MockBankPaymentService>();
+			builder.Services.AddScoped<IAbonentAuthenticationService, AbonentAuthenticationService>();
+			builder.Services.AddScoped<IDebtPaymentService, DebtPaymentService>();
+			builder.Services.AddScoped<IFlatDebtsQueryService, FlatDebtsQueryService>();
+			builder.Services.AddScoped<IAbonentFlatsQueryService, AbonentFlatsQueryService>();
+			builder.Services.AddScoped<INotificationService, EmailNotificationService>();
+			builder.Services.AddScoped<IReceiptRegistrationService, AtolReceiptRegistrationService>();
 
             var app = builder.Build();
 

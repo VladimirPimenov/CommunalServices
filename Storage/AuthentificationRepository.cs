@@ -18,7 +18,7 @@ namespace CommunalServices.Storage
 
         public async Task<Abonent> AddAbonentAsync(Abonent newAbonent)
         {
-            await context.Abonent.AddAsync(newAbonent);
+            context.Abonent.Add(newAbonent);
             await context.SaveChangesAsync();
 
             return newAbonent;
