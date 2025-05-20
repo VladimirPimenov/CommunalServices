@@ -22,15 +22,15 @@ namespace CommunalServices.Controllers
         /// <returns>
         /// Возвращает:
         /// - 200 (Ok) с данными абонента, если вход успешен
-        /// - 404 (NotFound) если абонент не найден или пароль неверен
+        /// - 401 (Unauthorized) если абонент не найден или пароль неверен
         /// </returns>
         [HttpGet]
         [ProducesResponseType<Abonent>(200)]
-        [ProducesResponseType(404)]
+        [ProducesResponseType(401)]
         public async Task<IActionResult> LoginAsync(string login, string password)
         {
             var abonent = await abonentAuthService.LoginAsync(login, password);
-            return abonent == null ? NotFound() : Ok(abonent);
+            return abonent == null ? Unauthorized() : Ok(abonent);
         }
 
         /// <summary>
@@ -54,19 +54,21 @@ namespace CommunalServices.Controllers
         /// <summary>
         /// Изменяет пароль абонента.
         /// </summary>
-        /// <param name="updatedAbonent">Обновленные данные абонента с новым паролем.</param>
+        /// <param name="login">Логин абонента, для которого необходимо изменить пароль.</param>
+        /// <param name="currentPassword">Текущий пароль абонента для проверки.</param>
+        /// <param name="newPassword">Новый пароль.</param>
         /// <returns>
         /// Возвращает:
         /// - 200 (Ok) с обновленным абонентом, если изменение пароля успешно
-        /// - 404 (NotFound) если абонент не найден
+        /// - 401 (Unauthorized) если абонент не найден или текущий пароль неверен
         /// </returns>
         [HttpPut]
         [ProducesResponseType<Abonent>(200)]
-        [ProducesResponseType(404)]
-        public async Task<IActionResult> ChangePassword(AbonentDTO updatedAbonent)
+        [ProducesResponseType(401)]
+        public async Task<IActionResult> ChangePassword(string login, string currentPassword, string newPassword)
         {
-            var abonent = await abonentAuthService.ChangePasswordAsync(updatedAbonent);
-            return abonent == null ? NotFound() : Ok(abonent);
+            var abonent = await abonentAuthService.ChangePasswordAsync(login, currentPassword, newPassword);
+            return abonent == null ? Unauthorized() : Ok(abonent);
         }
     }
 }

@@ -31,18 +31,18 @@ namespace CommunalServices.Domain.UseCase
             return abonent;
         }
 
-        public async Task<Abonent> ChangePasswordAsync(AbonentDTO updatedAbonent)
+        public async Task<Abonent> ChangePasswordAsync(string login, string currentPassword, string newPassword)
         {
-            var abonent = await authRepository.GetAbonentByLoginAsync(updatedAbonent.Login);
+            var abonent = await authRepository.GetAbonentByLoginAsync(login);
 
-            if (abonent == null)
+            if (abonent == null || abonent.Password != currentPassword)
                 return null;
 
-            abonent.Password = updatedAbonent.Password;
+            abonent.Password = newPassword;
 
             await authRepository.UpdateAbonentAsync(abonent);
 
-            notificationService.SendNewAbonentPasswordToEmail(abonent);
+            //notificationService.SendNewAbonentPasswordToEmail(abonent);
 
             return abonent;
         }

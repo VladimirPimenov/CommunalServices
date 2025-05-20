@@ -29,6 +29,6 @@ namespace CommunalServices.Domain.Contracts
         /// </summary>
         /// <param name="updatedAbonent">DTO, содержащий информацию об абоненте с новым паролем.</param>
         /// <returns>Возвращает объект абонента с обновленным паролем, если операция прошла успешно; иначе null.</returns>
-        public Task<Abonent> ChangePasswordAsync(AbonentDTO updatedAbonent);
+        public Task<Abonent> ChangePasswordAsync(string login, string currentPassword, string newPassword);
     }
 }
