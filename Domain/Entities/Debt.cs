@@ -19,9 +19,9 @@ namespace CommunalServices.Domain.Entities
         public int FlatId { get; set; }
 
         /// <summary>
-        /// Тип ресурса, за который начислена задолженность.
+        /// Идентификатор ресурса, за который начислена задолженность.
         /// </summary>
-        public string ResourceType { get; set; }
+        public int ResourceId { get; set; }
 
         /// <summary>
         /// Поставщик ресурса.
