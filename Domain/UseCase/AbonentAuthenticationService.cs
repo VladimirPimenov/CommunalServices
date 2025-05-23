@@ -42,7 +42,7 @@ namespace CommunalServices.Domain.UseCase
 
             await authRepository.UpdateAbonentAsync(abonent);
 
-            //notificationService.SendNewAbonentPasswordToEmail(abonent);
+            notificationService.SendNewAbonentPasswordToEmail(abonent);
 
             return abonent;
         }
