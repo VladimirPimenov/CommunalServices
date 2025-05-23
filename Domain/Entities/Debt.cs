@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CommunalServices.Domain.Entities
 {
@@ -22,6 +23,8 @@ namespace CommunalServices.Domain.Entities
         /// Идентификатор ресурса, за который начислена задолженность.
         /// </summary>
         public int ResourceId { get; set; }
+
+        public Resource Resource { get; set; }
 
         /// <summary>
         /// Поставщик ресурса.
