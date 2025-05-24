@@ -23,5 +23,10 @@ namespace CommunalServices.Domain.Entities
         /// Идентификатор квартиры, принадлежащей абоненту.
         /// </summary>
         public int FlatId { get; set; }
+
+        /// <summary>
+        /// Номер документа собственности.
+        /// </summary>
+        public string OwnershipDocumentNumber { get; set; }
     }
 }
